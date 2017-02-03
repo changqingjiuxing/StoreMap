@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Demo -StoreMap</title>
+    <title>Demo - StoreMap</title>
     <link href="https://cdn.bootcss.com/normalize/5.0.0/normalize.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
     <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/layer/3.0.1/layer.min.js"></script>
+    <script src="./js/store_map.js"></script>
 </head>
 <body>
     <div class="row">
@@ -18,14 +20,12 @@
         <div id="map"><div>
     </div>
     <script>
+        smap.config = ({
+            key : '8edbb813fca4cb8b0b82299a86cbafba'
+        })
+        smap.init_map();
         $(".new-map").click(function(event) {
-            layer.prompt({title: '输入任何口令，并确认', formType: 1}, function(pass, index){
-                layer.close(index);
-                layer.prompt({title: '随便写点啥，并确认', formType: 2}, function(text, index){
-                    layer.close(index);
-                    layer.msg('演示完毕！您的口令：'+ pass + text);
-                });
-            });
+            smap.create_map();
         });
     </script>
 </body>
