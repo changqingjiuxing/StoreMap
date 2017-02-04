@@ -37,8 +37,8 @@
                         this.fail(data);
                     }
                 },
-                error : function (XMLHttpRequest, textStatus, errorThrown) {
-                    this.error(XMLHttpRequest, textStatus, errorThrown);
+                error : function (datan) {
+                    this.error(data);
                 }
             })
         },
