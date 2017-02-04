@@ -96,6 +96,7 @@
             //step4: 接收
             xhr.onreadystatechange = function(){
                 if(xhr.readtState == 4){
+                    alert(xhr.state+xhr.status)
                     if(xhr.state>=200 && xhr.status<300){
                         obj.success&&obj.success(xhr.responseText,xhr.responseXML);
                     }
