@@ -22,23 +22,24 @@
         name : 'test',
         key : '',
         init : function () {
+            var _this = this;
             smap.tools.ajax({
                 url: 'https://yuntuapi.amap.com/datamanage/table/create',
                 type: 'post',
                 dataType: 'json',
                 data: {
                     key: smap.config.key,
-                    name : this.name
+                    name: this.name
                 },
-                success : function (data) {
+                success: function (data) {
                     if(data.status !== 1) {
-                        this.success(data);
+                        _this.fail(data);
                     }else{
-                        this.fail(data);
+                        _this.success(data);
                     }
                 },
-                error : function (data) {
-                    this.error(data);
+                error : function () {
+                    _this.error();
                 }
             })
         },
@@ -46,10 +47,10 @@
             console.success("create success : "+data.tableid);
         },
         fail : function (data) {
-            console.error("create fail : "+data.info + " code : " + data.infocode)
+            console.error("create fail : " + data.info + " code : " + data.infocode);
         },
-        error : function (XMLHttpRequest, textStatus, errorThrown) {
-            console.error(textStatus + errorThrown);
+        error : function () {
+            console.error('error');
         }
     }
 
@@ -88,30 +89,26 @@
             //step1:兼容性创建对象
             if(window.XMLHttpRequest){
                 var xhr = new XMLHttpRequest();
-            }
-            else{
+            }else{
                 var xhr = new ActiveXObject('Microsoft.XMLHTTP');
             }
 
             //step4: 接收
             xhr.onreadystatechange = function(){
-                if(xhr.readtState == 4){
-                    alert(xhr.state+xhr.status)
-                    if(xhr.state>=200 && xhr.status<300){
+                if(xhr.readyState == 4){
+                    if(xhr.status<300){
                         obj.success&&obj.success(xhr.responseText,xhr.responseXML);
-                    }
-                    else{
+                    }else{
                         obj.error&&obj.error(xhr.status);
                     }
                 }
             }
 
             //step2 step3:连接 和 发送
-            if(obj.type == 'GET'){
+            if (obj.type === 'GET') {
                 xhr.open('GET',obj.url+'?'+params,true);
                 xhr.send(null);
-            }
-            else if(obj.type == 'POST'){
+            }else if (obj.type === 'POST') {
                 xhr.open('POST',obj.url,true);
                 //设置请求头，以表单形式提交数据
                 xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
