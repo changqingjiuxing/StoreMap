@@ -24,7 +24,7 @@
         init : function () {
             var _this = this;
             smap.tools.ajax({
-                url: 'https://yuntuapi.amap.com/datamanage/table/create',
+                url: './map',
                 type: 'post',
                 dataType: 'json',
                 data: {
@@ -96,7 +96,7 @@
             //step4: 接收
             xhr.onreadystatechange = function(){
                 if(xhr.readyState == 4){
-                    if(xhr.status<300){
+                    if(xhr.status>=200 && xhr.status<300){
                         obj.success&&obj.success(xhr.responseText,xhr.responseXML);
                     }else{
                         obj.error&&obj.error(xhr.status);
