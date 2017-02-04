@@ -22,7 +22,7 @@
         name : 'test',
         key : '',
         init : function () {
-            $.ajax({
+            smap.tools.ajax({
                 url: 'https://yuntuapi.amap.com/datamanage/table/create',
                 type: 'post',
                 dataType: 'json',
