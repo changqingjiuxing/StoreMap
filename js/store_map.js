@@ -23,11 +23,11 @@
         key : '',
         init : function () {
             smap.tools.ajax({
-                url: 'http://yuntuapi.amap.com/datamanage/table/create',
+                url: 'https://yuntuapi.amap.com/datamanage/table/create',
                 type: 'post',
                 dataType: 'json',
                 data: {
-                    key: this.key,
+                    key: smap.config.key,
                     name : this.name
                 },
                 success : function (data) {

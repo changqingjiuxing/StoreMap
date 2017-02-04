@@ -25,7 +25,10 @@
         })
         $(".new-map").click(function() {
             smap.create({
-                
+                name : 'StoreMap',
+                success: function(data){
+                    console.info(data)
+                },
             });
         });
     </script>
