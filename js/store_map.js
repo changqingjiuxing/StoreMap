@@ -37,7 +37,7 @@
                         this.fail(data);
                     }
                 },
-                error : function (datan) {
+                error : function (data) {
                     this.error(data);
                 }
             })
