@@ -13,18 +13,19 @@
 
     /**
      * 远程创建云图
+     * @param   String  url     执行创建云图的程序网址(因跨域问题不能直接放高德API网址)
      * @param   String  name    云图名称
-     * @param   String  key     高德API KEY 默认不填读取全局配置的key
      * @param   Boolen  key     高德API KEY 默认不填读取全局配置的key
      * @method  init()  初始化请求创建云图 return 云图创建结果
      */
     var def_create = {
-        name : 'test',
+        url: './map.php',
+        name : 'TestMap',
         key : '',
         init : function () {
             var _this = this;
             smap.tools.ajax({
-                url: './map',
+                url: url,
                 type: 'post',
                 dataType: 'json',
                 data: {
