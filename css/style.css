@@ -1,4 +1,4 @@
 /*base initial*/
 *{ font-family: "微软雅黑" !important;}
 .row{ margin: 0 !important; padding: 20px;}
-.layui-layer-btn0{ color: #fff !important;}
+.layui-layer-btn0, .layui-layer-btn0:active, .layui-layer-btn0:focus{ color: #fff !important;}
