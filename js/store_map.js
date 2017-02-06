@@ -3,12 +3,23 @@
      * 全局配置信息
      * @param   String  key     高德API KEY
      * @param   String  tableid 高德云图ID
-     * @param   String  map     地图元素容器ID名称
+     * @param   String  map     地图元素容器ID
+     * @param   center  地图中心点
+     * @param   zoom    地图缩放等级
      */
     var def_config = {
         key : '',
         tableid : '',
-        map : '#map'
+        map : 'map',
+        center : [116.397428, 39.90923],
+        zoom: 12,
+        init: function () {
+            var map = new AMap.Map(map, {
+                resizeEnable: true,
+                center: center,//地图中心点
+                zoom: zoom //地图显示的缩放级别
+            });
+        }
     }
 
     /**
@@ -63,6 +74,7 @@
         create_setting : def_create,
         config : function (option) {
             this.setting = this.tools.extend(this.setting, option);
+            this.setting.init();
         },
         create : function (option) {
             this.create_setting.key = this.setting.key;
