@@ -14,6 +14,7 @@
         center : [116.397428, 39.90923],
         zoom: 12,
         init: function () {
+            alert('123');
             var map = new AMap.Map(map, {
                 resizeEnable: true,
                 center: center,//地图中心点
