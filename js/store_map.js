@@ -19,7 +19,37 @@
                 center: center,//地图中心点
                 zoom: zoom //地图显示的缩放级别
             });
+            //叠加云数据图层
+            function addCloudLayer() {
+                //加载云图层插件
+                map.plugin('AMap.CloudDataLayer', function() {
+                    var layerOptions = {
+                        query: {keywords: '公园'},
+                        clickable: true
+                    };
+                    var cloudDataLayer = new AMap.CloudDataLayer('532b9b3ee4b08ebff7d535b4', layerOptions); //实例化云图层类
+                    cloudDataLayer.setMap(map); //叠加云图层到地图
+
+                    AMap.event.addListener(cloudDataLayer, 'click', function(result) {
+                        var clouddata = result.data;
+                        var photo=[];
+                        if(clouddata._image[0]){//如果有上传的图片
+                            photo=['<img width=240 height=100 src="'+clouddata._image[0]._preurl+'"><br>'];
+                        }
+                        var infoWindow = new AMap.InfoWindow({
+                            content: "<font class='title'>" + clouddata._name + "</font><hr/>"+photo.join("")+"地址：" + clouddata._address + "<br />" + "创建时间：" + clouddata._createtime + "<br />" + "更新时间：" + clouddata._updatetime,
+                            size: new AMap.Size(0, 0),
+                            autoMove: true,
+                            offset: new AMap.Pixel(0, -25)
+                        });
+
+                        infoWindow.open(map, clouddata._location);
+                    });
+                });
+            }
+            addCloudLayer();
         }
+
     }
 
     /**
